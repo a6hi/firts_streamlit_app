@@ -1,7 +1,6 @@
 
 import streamlit
 import pandas
-import snowflake.connector
 
 streamlit.title('My Mom\'s New Healthy Diner')
 
@@ -26,3 +25,13 @@ streamlit.write('User Entered',fruit_choice)
 import requests
 fruityvise_respone = requests.get('https://fruityvice.com/api/fruit/'+fruit_choice)
 streamlit.text(fruityvise_respone.json())
+
+import snowflake.connector
+
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+streamlit.text("Hello from Snowflake:")
+streamlit.text(my_data_row)
+
