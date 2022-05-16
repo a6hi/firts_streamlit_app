@@ -20,8 +20,8 @@ streamlit.dataframe(fruits_to_show)
 streamlit.header('Fruityvice Fruite Advice')
 
 fruit_choice = streamlit.text_input('What fruit would you like information about?','kiwi')
-streamlit.write('User Entered',friut_choice)
+streamlit.write('User Entered',fruit_choice)
 
 import requests
-fruityvise_respone = requests.get('https://fruityvice.com/api/fruit/'+friut_choice)
+fruityvise_respone = requests.get('https://fruityvice.com/api/fruit/'+fruit_choice)
 streamlit.text(fruityvise_respone.json())
